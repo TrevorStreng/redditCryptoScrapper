@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "puppeteer": "^22.14.0"
+  },
+  "name": "redditcryptoscrapper",
+  "version": "1.0.0",
+  "description": "reddit scraper to obtain crypto info",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Trevor Streng",
+  "license": "ISC"
+}
