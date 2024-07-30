@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const cryptos = require("./cryptoList.js");
 
 const url = "https://www.reddit.com/r/CryptoCurrency/new/";
 
@@ -24,7 +25,28 @@ const fetchData = async () => {
     });
 
     await browser.close();
-    // console.log(feed);
+
+    for (let i = 0; i < feed.length; i++) {
+      feed[i] = feed[i].split(" ");
+    }
+    let arr = feed.flat();
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === "" || arr[i] === "\n") {
+        arr.splice(i, 1);
+        i--;
+      }
+    }
+    arr = arr.map((item) => item.trim());
+
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < cryptos.length; j++) {
+        const word = arr[i].toLowerCase();
+        if (word === cryptos[j].name || word === cryptos[j].ticker)
+          cryptos[j].cnt++;
+      }
+    }
+    console.log(cryptos);
+
     // return feed;
   } catch (err) {
     console.error(err);
